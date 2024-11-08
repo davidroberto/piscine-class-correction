@@ -62,7 +62,7 @@ class VendorMachine
 
                     if ($snack['quantity'] > 0) {
                         $this->cashAmount += $snack['price'];
-                        $this->snacks[$index]['quantity'] -= 1;
+                        $this->removeSnackQuantity($index);
                     } else {
                         throw new Exception('snack trouvé mais pas de quantité suffisante');
                     }
@@ -90,13 +90,16 @@ class VendorMachine
             $randomSnack = $this->snacks[$randomIndex];
 
             if ($randomSnack['quantity'] > 0) {
-                $this->snacks[$randomIndex]['quantity'] -= 1;
+                $this->removeSnackQuantity($randomIndex);
             }
 
-
-            $randomInsideCash =  rand(0, $this->cashAmount);
+            $randomInsideCash =  rand(0, $this->cashAmount * 100) / 100;
             $this->cashAmount -= $randomInsideCash;
         }
+    }
+
+    private function removeSnackQuantity($index) {
+        $this->snacks[$index]['quantity'] -= 1;
     }
 
 }

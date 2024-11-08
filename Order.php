@@ -2,12 +2,12 @@
 
 
 class Order {
-    public $id;
-    public $customerName;
-    public $status;
-    public $totalPrice;
-    public $products = [];
-    public $shippingAddress;
+    private $id;
+    private $customerName;
+    private $status;
+    private $totalPrice;
+    private $products = [];
+    private $shippingAddress;
 
     public function __construct($customerName) {
         $this->status === 'cart';
@@ -46,6 +46,8 @@ class Order {
 
     }
 
+    // private or public
+
 
     public function ship() {
         if ($this->status === 'paid') {
@@ -64,6 +66,7 @@ class Order {
 $order1 = new Order("David Robert");
 
 $order1->ship();
+
 
 
 
